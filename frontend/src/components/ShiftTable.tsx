@@ -7,6 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { useState } from 'react';
 import styles from "./ShiftTable.module.css";
 import ShiftTableRow from "./ShiftTableRow";
 import { ShiftData } from "./types";
@@ -16,6 +17,11 @@ interface Props {
   shiftData: ShiftData[];
 }
 export default function ShiftTable({ dates, shiftData }: Props) {
+  const [privateShiftData, setPrivateShiftData] = useState(shiftData);
+  const addRow = () => {
+    const updatedShiftData = privateShiftData.concat(new ShiftData("", dates.length));
+    setPrivateShiftData(updatedShiftData);
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -30,12 +36,12 @@ export default function ShiftTable({ dates, shiftData }: Props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {shiftData.map((row) => (
+          {privateShiftData.map((row) => (
             <ShiftTableRow row={row} />
           ))}
           <TableCell colSpan={dates.length+1} className={styles.bottom_row} padding="none">
             <div className={styles.bottom_area}>
-              <IconButton aria-label="delete">
+              <IconButton onClick={addRow} aria-label="add">
                 <AddCircleOutlineIcon />
               </IconButton>
             </div>
