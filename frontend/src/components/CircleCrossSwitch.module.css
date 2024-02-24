@@ -1,0 +1,27 @@
+.button {
+    font-family: sans-serif;
+    font-size: 24pt;
+    font-weight: bolder;
+    transition: color 0.3s;
+    transition: font-size 0.3s;
+}
+
+.ok {
+    color: #00dd00;
+}
+
+.ok:hover {
+    color: #00ff00;
+    font-size: 26pt;
+    cursor:pointer
+}
+
+.ng {
+    color: #ee0000;
+}
+
+.ng:hover {
+    color: #ff0000;
+    font-size: 26pt;
+    cursor:pointer
+}
